@@ -4,10 +4,28 @@ from pyairtable import Api
 from dotenv import load_dotenv
 import os
 
+from dotenv import load_dotenv
+import os
+import anthropic
+
 load_dotenv()
 AIRTABLE_TOKEN = os.getenv("AIRTABLE_TOKEN")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+
+# Set up Claude client
+claude = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 BASE_ID = "app12YVG4qT36zPuf"
 TABLE_ID = "tblGkFxZjmr5BzfOk"
+def get_topic(title):
+    message = claude.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=50,
+        messages=[{
+            "role": "user",
+            "content": f"Assign one topic to this poll title from this list only: Politics, Economy, Healthcare, International affairs, National security, Social Issues, Environment, Education, Immigration, LGBTQ+, AI/Technology, Business, Finance, Labor/workforce, Entertainment. Reply with just the topic word, nothing else. Poll title: {title}"
+        }]
+    )
+    return message.content[0].text.strip()
 
 # Connect to Airtable
 api = Api(AIRTABLE_TOKEN)
@@ -82,14 +100,18 @@ for feed in feeds:
             continue
 
         # Save to Airtable
+        topic = get_topic(entry.title)
         table.create({
             "Title": entry.title,
             "Pollster": feed["name"],
+            "Topic": topic,
             "Date": date.strftime("%Y-%m-%d") if date else "",
             "URL": entry.link,
             "Notes": entry.get("summary", "")[:500]
         })
-        print(f"Saved: {entry.title}")
+        print(f"Saved: {entry.title} → {topic}")
         total_new += 1
 
 print(f"\n=== {total_new} new polls saved to Airtable ===")
+test_topic = get_topic("Americans Broadly Disapprove of U.S. Military Action in Iran")
+print(f"AI topic test: → {test_topic}")
