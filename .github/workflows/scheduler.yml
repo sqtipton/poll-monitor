@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: pip install feedparser pyairtable python-dotenv requests
+        run: pip install feedparser pyairtable python-dotenv requests anthropic sendgrid
       - name: Run scraper
         env:
           AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
