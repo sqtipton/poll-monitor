@@ -113,5 +113,3 @@ for feed in feeds:
         total_new += 1
 
 print(f"\n=== {total_new} new polls saved to Airtable ===")
-test_topic = get_topic("Americans Broadly Disapprove of U.S. Military Action in Iran")
-print(f"AI topic test: → {test_topic}")
