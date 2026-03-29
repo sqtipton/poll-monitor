@@ -3,6 +3,7 @@ name: Run Poll Monitor
 on:
   schedule:
     - cron: '0 * * * *'
+    - cron: '0 13 * * *'
   workflow_dispatch:
 
 env:
@@ -25,3 +26,21 @@ jobs:
           AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python poll_monitor.py
+
+  send-digest:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 13 * * *'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pyairtable python-dotenv sendgrid
+      - name: Send email digest
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        run: python email_digest.py
