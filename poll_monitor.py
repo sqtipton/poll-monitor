@@ -42,13 +42,15 @@ feeds = [
     {"name": "U. Michigan", "url": "https://news.umich.edu/feed/"},
     {"name": "AP-NORC", "url": "https://apnorc.org/feed/rss/"},
     {"name": "Ipsos", "url": "https://www.ipsos.com/en-us/rss.xml"},
+    {"name": "MIT Tech Review", "url": "https://www.technologyreview.com/feed/"},
+    {"name": "Georgetown CSET", "url": "https://cset.georgetown.edu/feed/"},
 ]
 
 # Strong single keywords
-strong_keywords = ["poll", "survey", "approval rating", "respondents", "public opinion"]
+strong_keywords = ["poll", "survey", "approval rating", "respondents", "public opinion", "research finds", "study finds", "americans think", "public attitudes", "public views", "findings"]
 
 # Combo signals
-opinion_words = ["think", "say", "view", "believe", "want", "support", "oppose", "disapprove", "approve", "favor", "worry", "feel", "prefer"]
+opinion_words = ["think", "say", "view", "believe", "want", "support", "oppose", "disapprove", "approve", "favor", "worry", "feel", "prefer", "trust", "concerned", "confident"]
 
 # Skip these page types
 exclude_keywords = [
