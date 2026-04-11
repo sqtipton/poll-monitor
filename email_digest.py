@@ -12,9 +12,12 @@ SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 BASE_ID = "app12YVG4qT36zPuf"
 TABLE_ID = "tblGkFxZjmr5BzfOk"
 
-# Your email address
-YOUR_EMAIL = "stacia@tipton-inc.com"
-
+# Email recipients — add or remove addresses from this list
+RECIPIENT_EMAILS = [
+    "stacia@tipton-inc.com",
+    "drgloriast@gmail.com",
+    "david.tiptoncpa@gmail.com",
+]
 # Connect to Airtable
 api = Api(AIRTABLE_TOKEN)
 table = api.table(BASE_ID, TABLE_ID)
@@ -43,8 +46,8 @@ else:
 
     # Send email
     message = Mail(
-        from_email=YOUR_EMAIL,
-        to_emails=YOUR_EMAIL,
+        from_email="stacia@tipton-inc.com",
+        to_emails=RECIPIENT_EMAILS,
         subject=f"Poll Monitor Digest — {datetime.now().strftime('%B %d, %Y')}",
         html_content=body
     )
