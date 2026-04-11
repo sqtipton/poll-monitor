@@ -58,7 +58,6 @@ opinion_words = ["think", "say", "view", "believe", "want", "support", "oppose",
 exclude_keywords = [
     "methodology", "acknowledgment", "about this report", "how we did this",
     "time machine", "webinar", "data drops", "key insights", "data and tables",
-    "essential data", "gloves", "stroke", "microplastics", "cancer", "clinical"
 ]
 
 def is_poll(entry):
