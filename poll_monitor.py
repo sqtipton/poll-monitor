@@ -22,7 +22,7 @@ def get_topic(title):
         max_tokens=50,
         messages=[{
             "role": "user",
-            "content": f"Assign one topic to this poll title from this list only: Politics, Economy, Healthcare, International affairs, National security, Social Issues, Environment, Education, Immigration, LGBTQ+, AI/Technology, Business, Finance, Labor/workforce, Entertainment. Reply with just the topic word, nothing else. Poll title: {title}"
+           "content": f"Assign one topic to this poll title from this list only: Politics, Economy, Healthcare, International affairs, National security, Social Issues, Environment, Education, Immigration, LGBTQ+, AI/Technology, Business, Finance, Labor/workforce, Entertainment, Media & Information. Reply with just the topic word, nothing else. Poll title: {title}"
         }]
     )
     return message.content[0].text.strip()
