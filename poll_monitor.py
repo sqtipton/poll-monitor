@@ -44,6 +44,8 @@ feeds = [
     {"name": "Ipsos", "url": "https://www.ipsos.com/en-us/rss.xml"},
     {"name": "MIT Tech Review", "url": "https://www.technologyreview.com/feed/"},
     {"name": "Georgetown CSET", "url": "https://cset.georgetown.edu/feed/"},
+     {"name": "Gallup", "url": "https://news.google.com/rss/search?q=gallup+poll&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "YouGov", "url": "https://news.google.com/rss/search?q=yougov+poll+americans&hl=en-US&gl=US&ceid=US:en"},
 ]
 
 # Strong single keywords
