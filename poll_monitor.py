@@ -44,8 +44,16 @@ feeds = [
     {"name": "Ipsos", "url": "https://www.ipsos.com/en-us/rss.xml"},
     {"name": "MIT Tech Review", "url": "https://www.technologyreview.com/feed/"},
     {"name": "Georgetown CSET", "url": "https://cset.georgetown.edu/feed/"},
-     {"name": "Gallup", "url": "https://news.google.com/rss/search?q=gallup+poll&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "Gallup", "url": "https://news.google.com/rss/search?q=gallup+poll&hl=en-US&gl=US&ceid=US:en"},
     {"name": "YouGov", "url": "https://news.google.com/rss/search?q=yougov+poll+americans&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "NBC News", "url": "https://news.google.com/rss/search?q=NBC+News+poll+americans&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "ABC News", "url": "https://news.google.com/rss/search?q=ABC+News+poll+americans&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "CNN", "url": "https://news.google.com/rss/search?q=CNN+poll+americans&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "Monmouth", "url": "https://monmouth.edu/polling-institute/feed/"},
+    {"name": "Morning Consult", "url": "https://news.google.com/rss/search?q=morning+consult+poll+americans&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "Harris Poll", "url": "https://news.google.com/rss/search?q=harris+poll+americans&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "U. Florida", "url": "https://news.google.com/rss/search?q=University+of+Florida+poll+survey+americans&hl=en-US&gl=US&ceid=US:en"},
+    {"name": "VCU Wilder", "url": "https://news.google.com/rss/search?q=VCU+Wilder+poll+survey&hl=en-US&gl=US&ceid=US:en"},
 ]
 
 # Strong single keywords
