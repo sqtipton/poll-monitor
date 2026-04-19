@@ -17,6 +17,18 @@ table = api.table(BASE_ID, TABLE_ID)
 # Page setup
 st.set_page_config(page_title="Poll Monitor", page_icon="📊", layout="wide")
 
+# Google Analytics
+import streamlit.components.v1 as components
+components.html("""
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1TK2TYB7D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G1TK2TYB7D');
+    </script>
+""", height=0)
+
 # Navigation
 page = st.sidebar.radio("Navigate", ["📊 Dashboard", "ℹ️ About & Methodology"])
 
