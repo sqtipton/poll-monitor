@@ -87,9 +87,13 @@ def get_date(entry):
     except:
         return None
 
-def already_saved(url):
-    results = table.all(formula=f"URL = '{url}'")
-    return len(results) > 0
+def already_saved(url, title):
+    url_results = table.all(formula=f"URL = '{url}'")
+    if len(url_results) > 0:
+        return True
+    safe_title = title.replace("'", "\\'")
+    title_results = table.all(formula=f"Title = '{safe_title}'")
+    return len(title_results) > 0
 
 # Loop through each feed
 total_new = 0
@@ -107,7 +111,7 @@ for feed in feeds:
             continue
         if not is_poll(entry):
             continue
-        if already_saved(entry.link):
+        if already_saved(entry.link, entry.title):
             print(f"Already saved: {entry.title}")
             continue
 
