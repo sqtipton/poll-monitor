@@ -145,3 +145,24 @@ for feed in feeds:
         total_new += 1
 
 print(f"\n=== {total_new} new polls saved to Airtable ===")
+
+# Send alert if any polls need verification
+needs_verification = table.all(formula="Verification = 'Needs Verification'")
+if needs_verification:
+    import sendgrid
+    from sendgrid.helpers.mail import Mail
+    alert_body = "<h2>⚠️ Poll Monitor — Verification Needed</h2>"
+    alert_body += f"<p>{len(needs_verification)} polls need pollster verification:</p><hr>"
+    for r in needs_verification:
+        f = r["fields"]
+        alert_body += f"<p><a href='{f.get('URL', '')}'>{f.get('Title', '')}</a><br>"
+        alert_body += f"Tagged as: {f.get('Pollster', '')} · {f.get('Date', '')}</p><hr>"
+    message = Mail(
+        from_email="stacia@tipton-inc.com",
+        to_emails="stacia@tipton-inc.com",
+        subject="⚠️ Poll Monitor — Pollster Verification Needed",
+        html_content=alert_body
+    )
+    sg = sendgrid.SendGridAPIClient(api_key=os.getenv("SENDGRID_API_KEY"))
+    sg.send(message)
+    print(f"Alert sent — {len(needs_verification)} polls need verification")
