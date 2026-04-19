@@ -27,6 +27,20 @@ def get_topic(title):
     )
     return message.content[0].text.strip()
 
+def verify_pollster(feed_name, url):
+    news_feeds = ["U. Florida", "VCU Wilder"]
+    if feed_name not in news_feeds:
+        return "Verified"
+    domain_map = {
+        "U. Florida": "ufl.edu",
+        "VCU Wilder": "vcu.edu"
+    }
+    expected_domain = domain_map.get(feed_name, "")
+    if expected_domain in url:
+        return "Verified"
+    else:
+        return "Needs Verification"
+
 # Connect to Airtable
 api = Api(AIRTABLE_TOKEN)
 table = api.table(BASE_ID, TABLE_ID)
@@ -117,15 +131,17 @@ for feed in feeds:
 
         # Save to Airtable
         topic = get_topic(entry.title)
+        verification = verify_pollster(feed["name"], entry.link)
         table.create({
             "Title": entry.title,
             "Pollster": feed["name"],
             "Topic": topic,
             "Date": date.strftime("%Y-%m-%d") if date else "",
             "URL": entry.link,
-            "Notes": entry.get("summary", "")[:500]
+            "Notes": entry.get("summary", "")[:500],
+            "Verification": verification
         })
-        print(f"Saved: {entry.title} → {topic}")
+        print(f"Saved: {entry.title} → {topic} → {verification}")
         total_new += 1
 
 print(f"\n=== {total_new} new polls saved to Airtable ===")
